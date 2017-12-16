@@ -6,6 +6,25 @@ _(none)_
 
 --------------------
 
+## 5.4.1 (2017-07-25)
+* chore: update broken URLs
+* fix: decouple muted() from volume=0
+
+## 5.4.0 (2017-04-28)
+* Add getVideoPlaybackQuality API
+* Fix buffered() getter for RTMP provider
+* Fix paused state for RTMP provider after video ends
+
+## 5.3.0 (2017-02-17)
+* @albertogasparin added FCsubscribe call and proxy type to RTMP video provider
+* @mjneil add callback to adjust currentTime for video provider
+
+## 5.2.0 (2017-02-07)
+* @mjneil added appendChunkReady, another way of passing data into the swf
+
+## 5.1.0 (2016-07-18)
+* @alex-philips added support for the onTextData event
+
 ## 5.0.3 (2016-05-31)
 * Fix `muted` and `loop` attributes not being passed to the swf ([view](https://github.com/videojs/video-js-swf/pull/205))
 

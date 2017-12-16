@@ -1,9 +1,11 @@
-The light-weight Flash video player that makes Flash work like HTML5 video. This allows player skins, plugins, and other features to work with both HTML5 and Flash
+The lightweight Flash video player for Video.js. This allows the Video.js player's skins, plugins, and other features to work with both HTML5 and Flash.
 
-This project doesn't need to be used if you simply want to use the Flash video player.  Head back to the main Video.js project if that's all you need, as the compiled SWF is checked in there.
+This project doesn't need to be used if you simply want to use the Flash tech in Video.js.
 
-Installation
-============
+- For Video.js 5.x and below, the Flash tech is part of the [Video.js core repository](https://github.com/videojs/video.js).
+- For Video.js 6.x and above, the Flash tech is in a [separate repository](https://github.com/videojs/videojs-flash).
+
+## Installation
 
 1. Install Node Packages.
 ```bash
@@ -24,9 +26,30 @@ Production/ Distribution (runs mxmlc task and copies SWF to dist/):
 ```
 4. Open your browser at [http://localhost:8000/index.html](http://localhost:8000/index.html) to see a video play.  You can keep using grunt to rebuild the Flash code.
 
+## Releasing
 
-Running Unit and Integration Tests
-===========
+1. Make sure that the following file is modified with these values:
+
+```
+node_modules/flex-sdk/lib/flex_sdk/frameworks/flex-config.xml
+```
+
+```xml
+<!-- Specifies the minimum player version that will run the compiled SWF. -->
+<target-player>10.3</target-player>
+
+<!-- Specifies the version of the compiled SWF -->
+<swf-version>12</swf-version>
+```
+
+2. Run the commands:
+```sh
+npm version {major,minor,patch}
+npm publish
+```
+The swf and changelog will be automatically built and added to the repo on version.
+
+## Running Unit and Integration Tests
 
 ** Note - We want to drop all of this for grunt based / Karma testing.
 

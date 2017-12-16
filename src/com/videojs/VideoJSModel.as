@@ -26,6 +26,7 @@ package com.videojs{
         private var _currentPlaybackType:String;
         private var _videoReference:Video;
         private var _lastSetVolume:Number = 1;
+        private var _muted:Boolean = false;
         private var _provider:IProvider;
 
         // accessible properties
@@ -285,15 +286,17 @@ package com.videojs{
         }
 
         public function get muted():Boolean{
-            return (_volume == 0);
+            return _muted;
         }
         public function set muted(pValue:Boolean):void {
             if(pValue){
                 var __lastSetVolume:Number = _lastSetVolume;
+                _muted = true;
                 volume = 0;
                 _lastSetVolume = __lastSetVolume;
             }
             else{
+                _muted = false;
                 volume = _lastSetVolume;
             }
         }
@@ -407,6 +410,13 @@ package com.videojs{
             return true;
         }
 
+        public function get videoPlaybackQuality():Object{
+            if(_provider){
+                return _provider.videoPlaybackQuality;
+            }
+            return {};
+        }
+
         /**
          * Allows this model to act as a centralized event bus to which other classes can subscribe.
          *
@@ -486,6 +496,12 @@ package com.videojs{
         public function resume():void {
             if(_provider){
                 _provider.resume();
+            }
+        }
+
+        public function adjustCurrentTime(pValue:Number):void {
+            if (_provider) {
+                _provider.adjustCurrentTime(pValue);
             }
         }
 
